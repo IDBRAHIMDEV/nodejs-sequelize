@@ -1,0 +1,13 @@
+extends layout.pug
+
+block content
+    h1 Create Product
+    form(action="/products", method="post")
+        div.form-group
+            label(for="title") My Title
+            input#title.form-control(name="title",placeholder="Your Title")
+            label(for="content") My Title
+            input#content.form-control(name="content",placeholder="Your content")
+        button.btn.btn-primary Create
+block style
+    link(rel="stylesheet", href="/css/materia.min.css")

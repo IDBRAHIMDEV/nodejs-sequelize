@@ -1,0 +1,13 @@
+extends layout.pug
+
+block style
+    link(rel="stylesheet", href="/css/darkly.min.css")
+
+block content
+    h1 List of products
+        if listProducts.length > 0
+            ul
+                each product in listProducts
+                    li #{ product.title }
+        else
+            h1 no products
