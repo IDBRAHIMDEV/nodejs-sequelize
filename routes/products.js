@@ -1,61 +1,15 @@
 const express = require('express');
-const Product = require('./../models/product');
+const ProductController = require('./../controllers/ProductController');
 
 const router = express.Router();
 
-router.get('/products/create', (req, res) => {
-    res.render('create-product')
-})
-
-router.get('/products', (req, res) => {
-   
-    Product
-        .findAll()
-        .then((products) => {
-
-            res.render('index', { listProducts: products })
-        })
-        .catch(err => console.log(err))
-
-})
-
-
-router.post('/products', (req, res) => {
-
-    let { title, description, price, urlImage } = req.body;
-
-    Product.create({
-        title: title,
-        description: description,
-        price: price,
-        urlImage: urlImage
-    })
-    .then(() => res.redirect('/products'))
-    .catch((err) => console.log(err))
-    
-    
-})
-
-router.put('/products/:id', (req, res) => {
-    return res.send('modification totale')
-})
-
-router.get('/products/:id', (req, res) => {
-   
-    Product.findByPk(req.params.id)
-           .then(product => {
-               res.render('show', {
-                   product: product
-               })
-           })
-})
-
-router.patch('/products/:id', (req, res) => {
-    return res.send('modification partielle')
-})
-
-router.delete('/products/:id', (req, res) => {
-    return res.send('suppression')
-})
+router.get('/products/create', ProductController.createProduct);
+router.get('/products', ProductController.getAllProducts);
+router.post('/products', ProductController.storeProduct);
+router.put('/products/:id', ProductController.updateProduct);
+router.get('/products/:id/edit', ProductController.editProduct)
+router.get('/products/:id', ProductController.showOneProduct)
+router.patch('/products/:id', ProductController.patchProduct)
+router.delete('/products/:id', ProductController.deleteProduct)
 
 module.exports = router;

@@ -1,0 +1,18 @@
+extends layout.pug
+block style
+    link(rel="stylesheet", href="/css/materia.min.css")
+block content
+    .row
+        .col-md-6.mx-auto
+            h1 Edit Product
+            form(action="/products", method="put")
+                div.form-group
+                    label(for="title") My Title
+                    input#title.form-control(value=product.title, name="title",placeholder="Your Title")
+                    label(for="description") My description
+                    textarea#description.form-control(value=product.description, name="description",placeholder="Your description")
+                    label(for="price") My Price
+                    input#price.form-control(value=product.price, type="number",name="price",placeholder="Your price")
+                    label(for="image") Image
+                    input#image.form-control(value=product.urlImage, name="urlImage",placeholder="image of product")
+                button.btn.btn-warning Update
