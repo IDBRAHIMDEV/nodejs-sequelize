@@ -1,13 +1,23 @@
 extends layout.pug
 
 block style
-    link(rel="stylesheet", href="/css/darkly.min.css")
+    link(rel="stylesheet", href="/css/materia.min.css")
 
 block content
-    h1 List of products
-        if listProducts.length > 0
-            ul
-                each product in listProducts
-                    li #{ product.title }
-        else
-            h1 no products
+    .row.my-5
+        .col-md-6
+            h1 List of products
+        .col-md-6.text-right
+            a.btn.btn-success(href="/products/create") Add product
+
+    if listProducts.length > 0
+        .row.my-4    
+            each product in listProducts
+                .col-md-4
+                    a(href="/products/"+product.id)
+                        .card
+                            img.card-img-top(src=product.urlImage,alt="")
+                            .card-body
+                                h4.card-title #{ product.title }
+                                .card-text #{ product.description } - price: #{ product.price }
+            

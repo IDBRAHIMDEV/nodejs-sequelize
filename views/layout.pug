@@ -6,4 +6,8 @@ html(lang="en")
         title Document
         block style
     body
-        block content
+        nav.navbar.navbar-expand.navbar-dark.bg-primary
+            .nav.navbar-nav
+                a.nav-item.nav-link(href="/products") List Products
+        .container.mt-4
+            block content

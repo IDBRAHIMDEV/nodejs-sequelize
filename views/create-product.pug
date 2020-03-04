@@ -1,13 +1,18 @@
 extends layout.pug
-
-block content
-    h1 Create Product
-    form(action="/products", method="post")
-        div.form-group
-            label(for="title") My Title
-            input#title.form-control(name="title",placeholder="Your Title")
-            label(for="content") My Title
-            input#content.form-control(name="content",placeholder="Your content")
-        button.btn.btn-primary Create
 block style
     link(rel="stylesheet", href="/css/materia.min.css")
+block content
+    .row
+        .col-md-6.mx-auto
+            h1 Create Product
+            form(action="/products", method="post")
+                div.form-group
+                    label(for="title") My Title
+                    input#title.form-control(name="title",placeholder="Your Title")
+                    label(for="description") My description
+                    textarea#description.form-control(name="description",placeholder="Your description")
+                    label(for="price") My Price
+                    input#price.form-control(type="number",name="price",placeholder="Your price")
+                    label(for="image") Image
+                    input#image.form-control(name="urlImage",placeholder="image of product")
+                button.btn.btn-primary Create

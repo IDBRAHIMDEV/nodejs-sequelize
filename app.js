@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const products = require('./routes/products');
 const connection = require('./config/database');
 const Product = require('./models/product');
+const User = require('./models/user');
 
 const app = express();
 
@@ -29,17 +30,14 @@ app.use(products)
 //     res.send('<h1>List courses</h1>')
 // })
 
+User.hasMany(Product);
+Product.belongsTo(User);
+
 connection.sync()
           .then(result => {
-            Product.create({
-                title: 'Iphone 11',
-                price: 1200
-            })
-             .then(() => console.log('product created'))
-             .catch(() => console.log('error'))
+
+              app.listen(5000, () => console.log('Server ON'))
           })
           .catch((err) => {
               console.log('error: ', err)
           })
-
-app.listen(5000, () => console.log('Server ON'))

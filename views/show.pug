@@ -1,0 +1,16 @@
+extends layout.pug
+
+block style
+    link(rel="stylesheet", href="/css/materia.min.css")
+
+block content
+    .row.my-4
+        .col-md-12
+            a.btn.btn-link(href="/products")
+    .row
+        .col-md-12
+            h1 #{ product.title }
+            img(src=product.urlImage, class="img-fluid")
+            p.well #{ product.description }
+            h5.text-center.my-3
+                span.badge.badge-success #{ product.price } MAD
