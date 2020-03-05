@@ -25,7 +25,8 @@ block content
                                 td #{ category.title }
                                 td #{ category.active }
                                 td.text-right
-                                    a.btn.btn-sm.btn-dark(href=`/categories/${category.id}/edit`) Edit
+                                    a.btn.btn-sm.btn-dark.mr-2(href=`/categories/${category.id}/edit`) Edit
+                                    a.btn.btn-sm.btn-info(href=`/categories/${category.id}`) Show
     else
         h4 categories not found !
                     

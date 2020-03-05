@@ -1,0 +1,16 @@
+extends ../layout.pug
+block style
+    link(rel="stylesheet", href="/css/materia.min.css")
+block content
+    .row
+        .col-md-6.mx-auto
+            h1 Edit Product
+            form(action="/users/"+user.id, method="post")
+                div.form-group
+                    label(for="name") Name
+                    input#name.form-control(value=user.name,name="name",placeholder="Your fullname")
+                    label(for="email") Email
+                    input#email.form-control(value=user.email,name="email",placeholder="Your Email")
+                    label(for="password") Password
+                    input#password.form-control(type="password",name="password",placeholder="Your password")
+                button.btn.btn-warning Update

@@ -4,9 +4,9 @@ const Category = require('./../models/category');
 exports.getAllProducts = (req, res) => {
    
     Product
-        .findAll()
+        .findAll({ include: [{ model: Category }] })
         .then((products) => {
-
+            console.log(products)
             res.render('product/index', { listProducts: products })
         })
         .catch(err => console.log(err))

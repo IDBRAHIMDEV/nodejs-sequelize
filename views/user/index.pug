@@ -1,0 +1,31 @@
+extends ../layout.pug
+
+block style
+    link(rel="stylesheet", href="/css/materia.min.css")
+
+block content
+    .row.my-5
+        .col-md-6
+            h1 List of Users
+        .col-md-6.text-right
+            a.btn.btn-success(href="/users/create") Add user
+
+    if listUsers.length > 0
+        .row.my-4    
+            .col-md-12
+                table.table.table-striped
+                    thead
+                        tr
+                            th Name
+                            th Email
+                            th
+                    tbody
+                        each user in listUsers
+                            tr
+                                td #{ user.name }
+                                td #{ user.email }
+                                td.text-right
+                                    a.btn.btn-sm.btn-dark(href=`/users/${user.id}/edit`) Edit
+                                    a.btn.btn-sm.btn-info(href=`/users/${user.id}`) Show
+    else
+        h4 User not found !

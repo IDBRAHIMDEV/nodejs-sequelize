@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 //import routes
 const products = require('./routes/products');
 const categories = require('./routes/categories');
+const users = require('./routes/users');
 
 //Connection with MySQL
 const connection = require('./config/database');
@@ -24,6 +25,7 @@ app.set('views', 'views')
 
 app.use(products)
 app.use(categories)
+app.use(users)
 
 // app.use('/create-course', (req, res, next) => {
 //    res.send('<form action="/course" method="post"><input name="title"><button type="submit">Add course</button></form>')
