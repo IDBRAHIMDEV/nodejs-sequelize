@@ -1,0 +1,31 @@
+extends ../layout.pug
+
+block style
+    link(rel="stylesheet", href="/css/materia.min.css")
+
+block content
+    .row.my-5
+        .col-md-6
+            h1 List of categories
+        .col-md-6.text-right
+            a.btn.btn-success(href="/categories/create") Add categogy
+
+    if listCategories.length > 0
+        .row.my-4    
+            .col-md-12
+                table.table.table-striped
+                    thead
+                        tr
+                            th Title
+                            th Status
+                            th
+                    tbody
+                        each category in listCategories
+                            tr
+                                td #{ category.title }
+                                td #{ category.active }
+                                td.text-right
+                                    a.btn.btn-sm.btn-dark(href=`/categories/${category.id}/edit`) Edit
+    else
+        h4 categories not found !
+                    

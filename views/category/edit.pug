@@ -1,0 +1,16 @@
+extends ../layout.pug
+block style
+    link(rel="stylesheet", href="/css/materia.min.css")
+block content
+    .row
+        .col-md-6.mx-auto
+            h1 Edit Product
+            form(action="/categories/"+category.id, method="POST")
+                input(type="hidden", name="_method", value="PUT")
+                div.form-group
+                    label(for="title") My Title
+                    input#title.form-control(value=category.title, name="title",placeholder="Your Title")
+                .form-check.my-3
+                    input.form-check-input(name="active",value=category.active,type="checkbox", id="active")
+                    label.form-check-label(for="active") Active
+                button.btn.btn-warning.btn-block Update

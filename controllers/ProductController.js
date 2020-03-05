@@ -6,7 +6,7 @@ exports.getAllProducts = (req, res) => {
         .findAll()
         .then((products) => {
 
-            res.render('index', { listProducts: products })
+            res.render('product/index', { listProducts: products })
         })
         .catch(err => console.log(err))
 
@@ -35,7 +35,7 @@ exports.showOneProduct = (req, res) => {
    
     Product.findByPk(req.params.id)
            .then(product => {
-               res.render('show', {
+               res.render('product/show', {
                    product: product
                })
            })
@@ -48,7 +48,7 @@ exports.deleteProduct =  (req, res) => {
 exports.editProduct =  (req, res) => {
     Product.findByPk(req.params.id)
            .then(product => {
-               res.render('edit', {
+               res.render('product/edit', {
                    product: product
                })
            })
@@ -60,5 +60,5 @@ exports.patchProduct = (req, res) => {
 
 
 exports.createProduct = (req, res) => {
-    res.render('create-product')
+    res.render('product/create')
 }

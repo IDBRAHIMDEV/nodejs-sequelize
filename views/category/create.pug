@@ -1,0 +1,16 @@
+extends ../layout.pug
+block style
+    link(rel="stylesheet", href="/css/materia.min.css")
+block content
+    .row
+        .col-md-6.mx-auto
+            h1 Create Category
+            form(action="/categories", method="post")
+                div.form-group
+                    label(for="title") My Title
+                    input#title.form-control(name="title",placeholder="Your Title")
+                .form-check.my-3
+                    input.form-check-input(type="checkbox", id="active")
+                    label.form-check-label(for="active") Active
+                button.btn.btn-primary.btn-block Create
+                   
