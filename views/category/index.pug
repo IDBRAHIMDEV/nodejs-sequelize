@@ -1,0 +1,29 @@
+extends ../layout.pug
+
+block style
+    link(rel="stylesheet", href="/css/materia.min.css")
+
+block content
+    .row.my-5
+        .col-md-6
+            h1 List of categories
+        .col-md-6.text-right
+            a.btn.btn-success(href="/categories/create") Add category
+    if listCategories.length > 0
+        .row.my-3
+            .col-md-12
+                table.table.table-striped.table-inverse
+                    thead
+                        tr
+                            th Title
+                            th 
+                            th
+                    tbody
+                        each category in listCategories
+                            tr
+                                td #{ category.title }
+                                td
+                                td.text-right
+                                    a.btn.btn-dark.btn-sm(href=`/categories/${category.id}`) Show
+                
+                

@@ -1,0 +1,21 @@
+extends ../layout.pug
+
+block style
+    link(rel="stylesheet", href="/css/materia.min.css")
+
+block content
+    .row.my-4
+        .col-md-12
+            a.btn.btn-link(href="/categories")
+    if category.length > 0
+    .row.my-4    
+        each product in category.products
+            .col-md-4
+                .card
+                    img.card-img-top(src=product.urlImage,alt="")
+                    .card-body
+                        h4.card-title #{ product.title }
+                        .card-text #{ product.description }
+                            div.text-center.my-4
+                                a.btn.btn-success.mr-2.btn-sm(href="/products/"+product.id+"/edit") Edit
+                                a.btn.btn-dark.btn-sm(href="/products/"+product.id) Show

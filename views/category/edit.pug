@@ -1,0 +1,12 @@
+extends ../layout.pug
+block style
+    link(rel="stylesheet", href="/css/materia.min.css")
+block content
+    .row
+        .col-md-6.mx-auto
+            h1 Edit Category
+            form(action="/categories", method="put")
+                div.form-group
+                    label(for="title") My Title
+                    input#title.form-control(value=product.title, name="title",placeholder="Your Title")
+                button.btn.btn-warning Update
