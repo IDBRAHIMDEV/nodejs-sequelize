@@ -23,9 +23,9 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.set('view engine', 'pug')
 app.set('views', 'views')
 
-app.use(products)
-app.use(categories)
-app.use(users)
+app.use('/products',products)
+app.use('/categories',categories)
+app.use('/users',users)
 
 // app.use('/create-course', (req, res, next) => {
 //    res.send('<form action="/course" method="post"><input name="title"><button type="submit">Add course</button></form>')

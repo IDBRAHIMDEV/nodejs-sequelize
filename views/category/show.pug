@@ -7,6 +7,28 @@ block content
     .row.my-4
         .col-md-12
             a.btn.btn-link(href="/categories")
+    .row.my-5
+        .col-md-8.mx-auto
+            ul.nav
+                each category in categories
+                    li.nav-item
+                        a.nav-link(href="/categories/"+category.id) #{ category.title }
     .row
         .col-md-12
             h1 #{ category.title }
+    
+    if products.length > 0
+        .row.my-4    
+            each product in products
+                .col-md-4.my-3
+                    .card
+                        img.card-img-top(src=product.urlImage,alt="")
+                        .card-body
+                            h4.card-title #{ product.title }
+                            .card-text #{ product.description }
+                                div.text-center
+                                    form(method="post", action="/products/"+product.id+"/delete")
+                                        a.btn.btn-success.mr-2.btn-sm(href="/products/"+product.id+"/edit") Edit
+                                        a.btn.btn-dark.mr-2.btn-sm(href="/products/"+product.id) Show
+                                        button.btn.btn-sm.btn-danger Delete
+            

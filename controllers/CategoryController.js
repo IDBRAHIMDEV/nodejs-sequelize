@@ -39,14 +39,16 @@ exports.updateCategory = (req, res) => {
     .catch((err) => console.log(err))
 }
 
-exports.showOneCategory = (req, res) => {
+exports.showOneCategory = async (req, res) => {
    
-    Category.findByPk(req.params.id)
-           .then(category => {
-               res.render('category/show', {
-                   category: category
-               })
-           })
+    let categories = await Category.findAll();
+    let category = await Category.findByPk(req.params.id);
+
+    category.getProducts()
+          .then((products) => {
+              res.render('category/show', { category: category, products: products, categories: categories })
+          })
+          .catch(err => console.log(err))
 }
 
 exports.deleteCategory =  (req, res) => {
