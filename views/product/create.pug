@@ -7,6 +7,9 @@ block content
             h1 Create Product
             form(action="/products", method="post")
                 div.form-group
+                    select.form-control(name="category")
+                        each category in categories
+                            option(value=category.id) #{ category.title }
                     label(for="title") My Title
                     input#title.form-control(name="title",placeholder="Your Title")
                     label(for="description") My description

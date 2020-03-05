@@ -21,5 +21,7 @@ block content
                             .card-text #{ product.description }
                                 div.text-center
                                     a.btn.btn-success.mr-2.btn-sm(href="/products/"+product.id+"/edit") Edit
-                                    a.btn.btn-dark.btn-sm(href="/products/"+product.id) Show
+                                    a.btn.btn-dark.mr-2.btn-sm(href="/products/"+product.id) Show
+                                    form(method="post", action="/products/"+product.id+"/delete")
+                                        button.btn.btn-sm.btn-danger Delete
             

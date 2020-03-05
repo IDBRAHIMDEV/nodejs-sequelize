@@ -1,4 +1,5 @@
 const Product = require('./../models/product');
+const Category = require('./../models/category');
 
 exports.getAllProducts = (req, res) => {
    
@@ -14,13 +15,14 @@ exports.getAllProducts = (req, res) => {
 
 exports.storeProduct = (req, res) => {
 
-    let { title, description, price, urlImage } = req.body;
+    let { title, description, price, urlImage, category } = req.body;
 
     Product.create({
         title: title,
         description: description,
         price: price,
-        urlImage: urlImage
+        urlImage: urlImage,
+        categoryId: category
     })
     .then(() => res.redirect('/products'))
     .catch((err) => console.log(err))
@@ -42,7 +44,12 @@ exports.showOneProduct = (req, res) => {
 }
 
 exports.deleteProduct =  (req, res) => {
-    return res.send('suppression')
+    
+    let id = req.params.id;
+
+    Product.destroy({ where: { id: id } })
+           .then(() => res.redirect('/products'))
+           .catch((err) => console.log(err))
 }
 
 exports.editProduct =  (req, res) => {
@@ -60,5 +67,12 @@ exports.patchProduct = (req, res) => {
 
 
 exports.createProduct = (req, res) => {
-    res.render('product/create')
+
+    Category.findAll({ where: { active: 1 } })
+            .then((categories) => {
+
+                res.render('product/create', { categories: categories })
+            })
+            .catch((err) => console.log(err))
+
 }
