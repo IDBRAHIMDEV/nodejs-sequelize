@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 //import routes
 const products = require('./routes/products');
@@ -17,6 +18,7 @@ const User = require('./models/user');
 
 const app = express();
 
+app.use(cors())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
