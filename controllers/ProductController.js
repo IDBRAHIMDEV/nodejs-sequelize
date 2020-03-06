@@ -7,9 +7,9 @@ exports.getAllProducts = (req, res) => {
         .findAll({ include: [{ model: Category }] })
         .then((products) => {
             console.log(products)
-            res.render('product/index', { listProducts: products })
+            res.status(200).json({ error: false, data: products })
         })
-        .catch(err => console.log(err))
+        .catch(err => res.status(404).json({error: true, message: 'products not found!'}))
 
 }
 
@@ -24,8 +24,8 @@ exports.storeProduct = (req, res) => {
         urlImage: urlImage,
         categoryId: category
     })
-    .then(() => res.redirect('/products'))
-    .catch((err) => console.log(err))
+    .then((product) => res.status(201).json({error: false, data: product}))
+    .catch((err) => res.status(400).json({error: true, message: 'Bad request !'}))
    
 }
 
@@ -37,10 +37,9 @@ exports.showOneProduct = (req, res) => {
    
     Product.findByPk(req.params.id)
            .then(product => {
-               res.render('product/show', {
-                   product: product
-               })
+               res.status(200).json({ error: false, data: product })
            })
+           .catch(err => res.status(404).json({error: true, message: 'product not found !'})) 
 }
 
 exports.deleteProduct =  (req, res) => {
@@ -48,31 +47,31 @@ exports.deleteProduct =  (req, res) => {
     let id = req.params.id;
 
     Product.destroy({ where: { id: id } })
-           .then(() => res.redirect('/products'))
-           .catch((err) => console.log(err))
+           .then(() => res.status(204).json({}))
+           .catch((err) => res.status(403).json({ error: true, message: 'impossible to delete this resource !' }))
 }
 
-exports.editProduct =  (req, res) => {
-    Product.findByPk(req.params.id)
-           .then(product => {
-               res.render('product/edit', {
-                   product: product
-               })
-           })
-}
+// exports.editProduct =  (req, res) => {
+//     Product.findByPk(req.params.id)
+//            .then(product => {
+//                res.render('product/edit', {
+//                    product: product
+//                })
+//            })
+// }
 
 exports.patchProduct = (req, res) => {
     return res.send('modification partielle')
 }
 
 
-exports.createProduct = (req, res) => {
+// exports.createProduct = (req, res) => {
 
-    Category.findAll({ where: { active: 1 } })
-            .then((categories) => {
+//     Category.findAll({ where: { active: 1 } })
+//             .then((categories) => {
 
-                res.render('product/create', { categories: categories })
-            })
-            .catch((err) => console.log(err))
+//                 res.render('product/create', { categories: categories })
+//             })
+//             .catch((err) => console.log(err))
 
-}
+// }
